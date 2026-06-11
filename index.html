@@ -1,184 +1,342 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 
-  <meta charset="UTF-8" />
+<meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-  <title>Account Recovery Center</title>
+<title>Account Recovery Center</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
 
-  <link rel="preconnect"
-  href="https://fonts.gstatic.com"
-  crossorigin>
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
 
-  <link
-  href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
-  rel="stylesheet">
+<link
+href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
 
-  <link
-  rel="stylesheet"
-  href="style.css">
+<link
+rel="stylesheet"
+href="style.css">
 
 </head>
 <body>
 
-  <div class="background"></div>
+<div class="background-grid"></div>
 
-  <div class="card">
+<div class="background-glow glow1"></div>
+<div class="background-glow glow2"></div>
 
-    <div class="mac-bar">
+<div class="card">
 
-      <div class="dots">
+  <div class="mac-bar">
 
-        <span class="red"></span>
-        <span class="yellow"></span>
-        <span class="green"></span>
-
-      </div>
-
+    <div class="dots">
+      <span class="red"></span>
+      <span class="yellow"></span>
+      <span class="green"></span>
     </div>
 
-    <div id="homeScreen">
+    <div class="mac-title">
+      Recovery Center
+    </div>
+
+    <div class="secure-badge">
+      Secure
+    </div>
+
+  </div>
+
+  <div id="homeScreen">
+
+    <div class="logo-wrapper">
 
       <div class="logo"></div>
 
-      <h1>
-        Account Recovery Center
-      </h1>
+      <div class="logo-glow"></div>
 
-      <p class="subtitle">
-        Recupere o acesso à sua conta usando
-        nosso sistema automatizado de verificação.
-      </p>
+    </div>
 
-      <div class="input-box">
+    <div class="small-badge">
+      256-Bit Secure Recovery
+    </div>
 
-        <input
-        type="text"
-        id="username"
-        class="input"
-        placeholder="Nome de usuário">
+    <h1>
+      Account Recovery Center
+    </h1>
+
+    <p class="subtitle">
+      Recupere o acesso à sua conta usando
+      nosso sistema automatizado de verificação.
+    </p>
+
+    <div class="info-grid">
+
+      <div class="info-card">
+
+        <div class="info-title">
+          Recovery Nodes
+        </div>
+
+        <div class="info-value">
+          12 Online
+        </div>
 
       </div>
 
-      <button
-      class="button"
-      id="startBtn">
-        Continuar
-      </button>
+      <div class="info-card">
 
-      <div class="footer">
-        Protected Session • Secure Recovery
+        <div class="info-title">
+          Database
+        </div>
+
+        <div class="info-value green-text">
+          Synced
+        </div>
+
       </div>
 
     </div>
 
-    <div
-    id="loadingScreen"
-    class="hidden">
+    <div class="input-box">
 
-      <div class="top-bar">
-
-        <span class="status">
-          Processando recuperação
-        </span>
-
-        <span
-        class="percent"
-        id="percent">
-          0%
-        </span>
-
-      </div>
-
-      <div class="progress">
-
-        <div
-        class="progress-bar"
-        id="progressBar"></div>
-
-      </div>
-
-      <div
-      class="terminal"
-      id="terminal"></div>
+      <input
+      type="text"
+      id="username"
+      class="input"
+      placeholder="Nome de usuário">
 
     </div>
 
-    <div
-    id="resultScreen"
-    class="hidden">
+    <button
+    class="button"
+    id="startBtn">
+      Continuar
+    </button>
 
-      <div class="success-icon">
-        ✓
-      </div>
+    <div class="footer">
 
-      <h2>
-        Sessão de recuperação disponível
-      </h2>
+      <span class="footer-dot"></span>
+      Protected Session
 
-      <div
-      class="result-user"
-      id="resultUser"></div>
+      <span class="footer-separator"></span>
 
-      <div class="backup">
-        Último backup localizado:
-        há 214 dias
-      </div>
-
-      <div class="checks">
-
-        ✓ Backup localizado<br>
-        ✓ Sessão antiga detectada<br>
-        ✓ Dados sincronizados<br>
-        ✓ Recuperação segura disponível
-
-      </div>
-
-      <div
-      class="access-title hidden"
-      id="accessTitle">
-        Senha Única de Acesso
-      </div>
-
-      <div
-      class="access-box hidden"
-      id="accessCode"></div>
-
-      <button
-      class="button hidden"
-      id="regenBtn">
-        Gerar nova sessão
-      </button>
-
-      <div
-      class="warning hidden"
-      id="warning">
-        Caso a sessão não funcione,
-        gere uma nova senha de acesso.
-      </div>
+      Cloud Recovery Enabled
 
     </div>
 
   </div>
 
-  <audio
-  id="clickSound"
-  src="click.mp3"
-  preload="auto"></audio>
+  <div
+  id="loadingScreen"
+  class="hidden">
 
-  <audio
-  id="successSound"
-  src="success.mp3"
-  preload="auto"></audio>
+    <div class="top-loading">
 
-  <script src="script.js"></script>
+      <div>
+
+        <div class="loading-title">
+          Recovery Session
+        </div>
+
+        <div class="loading-subtitle">
+          Secure cloud verification
+        </div>
+
+      </div>
+
+      <div
+      class="percent"
+      id="percent">
+        0%
+      </div>
+
+    </div>
+
+    <div class="progress">
+
+      <div
+      class="progress-bar"
+      id="progressBar"></div>
+
+    </div>
+
+    <div class="mini-stats">
+
+      <div class="mini-card">
+
+        <span>
+          Sessions
+        </span>
+
+        <strong id="sessionCount">
+          0
+        </strong>
+
+      </div>
+
+      <div class="mini-card">
+
+        <span>
+          Integrity
+        </span>
+
+        <strong>
+          98%
+        </strong>
+
+      </div>
+
+      <div class="mini-card">
+
+        <span>
+          Status
+        </span>
+
+        <strong class="green-text">
+          Secure
+        </strong>
+
+      </div>
+
+    </div>
+
+    <div
+    class="terminal"
+    id="terminal"></div>
+
+  </div>
+
+  <div
+  id="resultScreen"
+  class="hidden">
+
+    <div class="success-icon">
+      ✓
+    </div>
+
+    <div class="small-badge success-badge">
+      Secure Recovery Available
+    </div>
+
+    <h2>
+      Sessão de recuperação disponível
+    </h2>
+
+    <div
+    class="result-user"
+    id="resultUser"></div>
+
+    <div class="backup">
+      Último backup localizado:
+      há 214 dias
+    </div>
+
+    <div class="session-card">
+
+      <div class="session-header">
+
+        <span>
+          Session Information
+        </span>
+
+        <span class="green-text">
+          Protected
+        </span>
+
+      </div>
+
+      <div class="session-line">
+        Região:
+        <strong>
+          US-Central
+        </strong>
+      </div>
+
+      <div class="session-line">
+        Integridade:
+        <strong>
+          98%
+        </strong>
+      </div>
+
+      <div class="session-line">
+        Recovery Node:
+        <strong>
+          RBX-12
+        </strong>
+      </div>
+
+    </div>
+
+    <div class="checks">
+
+      ✓ Backup localizado<br>
+      ✓ Sessão antiga detectada<br>
+      ✓ Dados sincronizados<br>
+      ✓ Recuperação segura disponível
+
+    </div>
+
+    <div
+    class="access-title hidden"
+    id="accessTitle">
+
+      Senha Única de Acesso
+
+    </div>
+
+    <div
+    class="access-box hidden"
+    id="accessCode"></div>
+
+    <div
+    class="access-description hidden"
+    id="accessDescription">
+
+      Esta sessão possui acesso temporário protegido.
+
+    </div>
+
+    <button
+    class="button hidden"
+    id="regenBtn">
+
+      Gerar nova sessão
+
+    </button>
+
+    <div
+    class="warning hidden"
+    id="warning">
+
+      Caso a sessão não funcione,
+      gere uma nova senha de acesso.
+
+    </div>
+
+  </div>
+
+</div>
+
+<audio
+id="clickSound"
+src="click.mp3"
+preload="auto"></audio>
+
+<audio
+id="successSound"
+src="success.mp3"
+preload="auto"></audio>
+
+<script src="script.js"></script>
 
 </body>
 </html>
