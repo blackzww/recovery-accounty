@@ -1,3 +1,5 @@
+// script.js
+
 const startBtn =
 document.getElementById("startBtn");
 
@@ -37,36 +39,42 @@ document.getElementById("accessTitle");
 const warning =
 document.getElementById("warning");
 
+const accessDescription =
+document.getElementById("accessDescription");
+
 const clickSound =
 document.getElementById("clickSound");
 
 const successSound =
 document.getElementById("successSound");
 
+const sessionCount =
+document.getElementById("sessionCount");
+
 const lines = [
 
-"Conectando ao servidor principal...",
-"Iniciando verificação segura...",
-"Verificando histórico da conta...",
-"Buscando sessões antigas...",
-"Consultando backups disponíveis...",
-"Validando informações sincronizadas...",
-"Tentando restaurar sessão anterior...",
+"[SYSTEM] Connecting recovery node...",
+"[SECURE] Initializing protected session...",
+"[DATABASE] Verificando histórico da conta...",
+"[CLOUD] Buscando sessões antigas...",
+"[SYNC] Consultando backups disponíveis...",
+"[SYSTEM] Validando informações sincronizadas...",
+"[RECOVERY] Tentando restaurar sessão anterior...",
 
-"ERROR_RED",
+"ERROR",
 
-"Erro ao processar recuperação.",
-"Tentando novamente...",
+"[SYSTEM] Erro ao processar recuperação.",
+"[SYSTEM] Tentando novamente...",
 
 "ERROR_END",
 
-"Nova sessão localizada.",
-"Verificando integridade dos dados...",
-"Sincronizando credenciais...",
-"Restaurando acesso temporário...",
-"Conta encontrada.",
-"Preparando sessão segura...",
-"Recuperação disponível."
+"[SECURE] Nova sessão localizada.",
+"[DATABASE] Verificando integridade dos dados...",
+"[SYNC] Sincronizando credenciais...",
+"[CLOUD] Restaurando acesso temporário...",
+"[SYSTEM] Conta encontrada.",
+"[SECURE] Preparando sessão segura...",
+"[RECOVERY] Recuperação disponível."
 
 ];
 
@@ -132,29 +140,31 @@ startBtn.onclick = () => {
 
     let paused = false;
 
+    let sessions = 0;
+
     const progressInterval = setInterval(() => {
 
         if(paused) return;
 
         if(progress < 20){
 
-            progress += 0.15;
+            progress += 0.12;
 
         }else if(progress < 45){
 
-            progress += 0.08;
+            progress += 0.06;
 
         }else if(progress < 70){
 
-            progress += 0.04;
+            progress += 0.03;
 
         }else if(progress < 90){
 
-            progress += 0.02;
+            progress += 0.015;
 
         }else{
 
-            progress += 0.008;
+            progress += 0.006;
 
         }
 
@@ -167,6 +177,11 @@ startBtn.onclick = () => {
 
         percent.innerText =
         Math.floor(progress) + "%";
+
+        sessions++;
+
+        sessionCount.innerText =
+        sessions;
 
         if(progress >= 100){
 
@@ -200,7 +215,14 @@ startBtn.onclick = () => {
                     accessCode.innerText =
                     generateRecovery(username);
 
-                },3500);
+                },3400);
+
+                setTimeout(() => {
+
+                    accessDescription
+                    .classList.remove("hidden");
+
+                },4200);
 
                 setTimeout(() => {
 
@@ -210,9 +232,9 @@ startBtn.onclick = () => {
                     warning
                     .classList.remove("hidden");
 
-                },5000);
+                },5200);
 
-            },2500);
+            },2600);
 
         }
 
@@ -226,7 +248,7 @@ startBtn.onclick = () => {
         const current =
         lines[lineIndex];
 
-        if(current === "ERROR_RED"){
+        if(current === "ERROR"){
 
             paused = true;
 
@@ -271,7 +293,7 @@ startBtn.onclick = () => {
 
         lineIndex++;
 
-    },2600);
+    },2800);
 
 };
 
