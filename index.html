@@ -11,36 +11,38 @@
 
   <title>Account Recovery Center</title>
 
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin>
 
   <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
+  href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet">
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
-
-  <link
-    rel="stylesheet"
-    href="style.css"
-  />
+  rel="stylesheet"
+  href="style.css">
 
 </head>
 <body>
 
-  <div class="background">
-    <div class="blur blur1"></div>
-    <div class="blur blur2"></div>
-  </div>
+  <div class="background"></div>
 
   <div class="card">
+
+    <div class="mac-bar">
+
+      <div class="dots">
+
+        <span class="red"></span>
+        <span class="yellow"></span>
+        <span class="green"></span>
+
+      </div>
+
+    </div>
 
     <div id="homeScreen">
 
@@ -58,31 +60,28 @@
       <div class="input-box">
 
         <input
-          type="text"
-          id="username"
-          class="input"
-          placeholder="Nome de usuário"
-        >
+        type="text"
+        id="username"
+        class="input"
+        placeholder="Nome de usuário">
 
       </div>
 
       <button
-        class="button"
-        id="startBtn"
-      >
+      class="button"
+      id="startBtn">
         Continuar
       </button>
 
       <div class="footer">
-        © 2026 Recovery Services
+        Protected Session • Secure Recovery
       </div>
 
     </div>
 
     <div
-      id="loadingScreen"
-      class="hidden"
-    >
+    id="loadingScreen"
+    class="hidden">
 
       <div class="top-bar">
 
@@ -91,9 +90,8 @@
         </span>
 
         <span
-          class="percent"
-          id="percent"
-        >
+        class="percent"
+        id="percent">
           0%
         </span>
 
@@ -102,62 +100,66 @@
       <div class="progress">
 
         <div
-          class="progress-bar"
-          id="progressBar"
-        ></div>
+        class="progress-bar"
+        id="progressBar"></div>
 
       </div>
 
       <div
-        class="terminal"
-        id="terminal"
-      ></div>
+      class="terminal"
+      id="terminal"></div>
 
     </div>
 
     <div
-      id="resultScreen"
-      class="hidden"
-    >
+    id="resultScreen"
+    class="hidden">
 
       <div class="success-icon">
         ✓
       </div>
 
       <h2>
-        Conta encontrada
+        Sessão de recuperação disponível
       </h2>
 
       <div
-        class="result-user"
-        id="resultUser"
-      ></div>
+      class="result-user"
+      id="resultUser"></div>
+
+      <div class="backup">
+        Último backup localizado:
+        há 214 dias
+      </div>
 
       <div class="checks">
 
         ✓ Backup localizado<br>
         ✓ Sessão antiga detectada<br>
-        ✓ Dados sincronizados
+        ✓ Dados sincronizados<br>
+        ✓ Recuperação segura disponível
 
       </div>
 
-      <div class="access-title">
+      <div
+      class="access-title hidden"
+      id="accessTitle">
         Senha Única de Acesso
       </div>
 
       <div
-        class="access-box"
-        id="accessCode"
-      ></div>
+      class="access-box hidden"
+      id="accessCode"></div>
 
       <button
-        class="button"
-        id="regenBtn"
-      >
+      class="button hidden"
+      id="regenBtn">
         Gerar nova sessão
       </button>
 
-      <div class="warning">
+      <div
+      class="warning hidden"
+      id="warning">
         Caso a sessão não funcione,
         gere uma nova senha de acesso.
       </div>
@@ -166,7 +168,17 @@
 
   </div>
 
+  <audio
+  id="clickSound"
+  src="click.mp3"
+  preload="auto"></audio>
+
+  <audio
+  id="successSound"
+  src="success.mp3"
+  preload="auto"></audio>
+
   <script src="script.js"></script>
 
 </body>
-        </html>
+</html>
