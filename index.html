@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="Simulador visual independente de recuperação de conta.">
+  <title>Recover Account 2.0 — Simulador</title>
+
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="background-glow glow-a" aria-hidden="true"></div>
+  <div class="background-glow glow-b" aria-hidden="true"></div>
+
+  <main class="window" aria-labelledby="appTitle">
+    <header class="window-bar">
+      <div class="traffic-lights" aria-hidden="true">
+        <span class="traffic red"></span>
+        <span class="traffic yellow"></span>
+        <span class="traffic green"></span>
+      </div>
+
+      <div class="window-title">Recover Account 2.0</div>
+
+      <div class="secure-pill">
+        <i data-lucide="shield-check"></i>
+        Seguro
+      </div>
+    </header>
+
+    <div class="notice" role="note">
+      <i data-lucide="info"></i>
+      <span><strong>Simulador independente.</strong> Não recupera contas, não solicita senha e não é afiliado à Roblox.</span>
+    </div>
+
+    <section id="wizardScreen">
+      <div class="brand-block">
+        <div class="brand-logo" aria-hidden="true">
+          <span></span>
+        </div>
+
+        <div>
+          <p class="eyebrow">MIRRORS TEAM</p>
+          <h1 id="appTitle">Recover Account 2.0</h1>
+          <p class="subtitle">Simule um processo visual de recuperação com uma interface inspirada no macOS.</p>
+        </div>
+      </div>
+
+      <div class="step-header">
+        <div>
+          <span id="stepLabel">Etapa 1 de 4</span>
+          <strong id="stepTitle">Identificar conta</strong>
+        </div>
+        <span class="session-label">
+          <i data-lucide="lock-keyhole"></i>
+          Sessão local
+        </span>
+      </div>
+
+      <div class="step-progress" aria-hidden="true">
+        <span class="step-dot active"></span>
+        <span class="step-line"></span>
+        <span class="step-dot"></span>
+        <span class="step-line"></span>
+        <span class="step-dot"></span>
+        <span class="step-line"></span>
+        <span class="step-dot"></span>
+      </div>
+
+      <form id="recoveryForm" novalidate>
+        <section class="step-panel active" data-step="1">
+          <label class="field-label" for="username">Nome de usuário</label>
+          <div class="input-shell">
+            <i data-lucide="user-round"></i>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              maxlength="20"
+              autocomplete="off"
+              autocapitalize="none"
+              spellcheck="false"
+              placeholder="Ex.: blackzw_01"
+            >
+          </div>
+          <p class="field-help">Use de 3 a 20 caracteres, letras, números e no máximo um “_”, sem espaços.</p>
+          <p id="usernameError" class="field-error" aria-live="polite"></p>
+        </section>
+
+        <section class="step-panel" data-step="2">
+          <label class="field-label" for="displayName">Apelido da conta</label>
+          <div class="input-shell">
+            <i data-lucide="badge"></i>
+            <input
+              id="displayName"
+              name="displayName"
+              type="text"
+              maxlength="20"
+              autocomplete="off"
+              placeholder="Ex.: Black"
+            >
+          </div>
+          <p class="field-help">Digite o nome que aparecia publicamente no perfil.</p>
+          <p id="displayNameError" class="field-error" aria-live="polite"></p>
+        </section>
+
+        <section class="step-panel" data-step="3">
+          <div class="field-heading">
+            <div>
+              <span class="field-label">Saldo aproximado</span>
+              <p class="field-help">Selecione uma estimativa de Robux.</p>
+            </div>
+            <div id="robuxValue" class="value-badge">1.000 Robux</div>
+          </div>
+
+          <div class="range-card">
+            <i data-lucide="circle-dollar-sign"></i>
+            <input id="robuxRange" type="range" min="0" max="6" value="3" step="1">
+          </div>
+
+          <div class="range-labels" aria-hidden="true">
+            <span>0</span>
+            <span>100 mil+</span>
+          </div>
+
+          <div class="preset-grid">
+            <button type="button" class="preset" data-range="0">0</button>
+            <button type="button" class="preset" data-range="2">100–500</button>
+            <button type="button" class="preset selected" data-range="3">1 mil</button>
+            <button type="button" class="preset" data-range="5">10 mil+</button>
+          </div>
+        </section>
+
+        <section class="step-panel" data-step="4">
+          <span class="field-label">Há quanto tempo perdeu o acesso?</span>
+          <p class="field-help">Escolha a opção mais próxima.</p>
+
+          <div class="choice-grid">
+            <label class="choice-card">
+              <input type="radio" name="lostTime" value="Menos de 1 mês">
+              <span class="choice-icon"><i data-lucide="calendar-days"></i></span>
+              <span>Menos de 1 mês</span>
+            </label>
+
+            <label class="choice-card">
+              <input type="radio" name="lostTime" value="De 1 a 6 meses">
+              <span class="choice-icon"><i data-lucide="calendar-clock"></i></span>
+              <span>De 1 a 6 meses</span>
+            </label>
+
+            <label class="choice-card">
+              <input type="radio" name="lostTime" value="De 6 a 12 meses">
+              <span class="choice-icon"><i data-lucide="history"></i></span>
+              <span>De 6 a 12 meses</span>
+            </label>
+
+            <label class="choice-card">
+              <input type="radio" name="lostTime" value="Mais de 1 ano">
+              <span class="choice-icon"><i data-lucide="archive"></i></span>
+              <span>Mais de 1 ano</span>
+            </label>
+          </div>
+
+          <p id="lostTimeError" class="field-error" aria-live="polite"></p>
+
+          <div class="summary-card">
+            <div>
+              <i data-lucide="shield-check"></i>
+              <span>Sessão criptografada</span>
+            </div>
+            <small>Os dados permanecem apenas neste navegador e são apagados ao recarregar.</small>
+          </div>
+        </section>
+
+        <div class="form-actions">
+          <button id="backBtn" class="button secondary hidden" type="button">
+            <i data-lucide="arrow-left"></i>
+            Voltar
+          </button>
+
+          <button id="nextBtn" class="button primary" type="button">
+            <span>Continuar</span>
+            <i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section id="loadingScreen" class="screen hidden" aria-live="polite">
+      <div class="loading-heading">
+        <div class="apple-spinner" aria-hidden="true"></div>
+        <div>
+          <p class="eyebrow">PROCESSAMENTO LOCAL</p>
+          <h2>Preparando simulação</h2>
+        </div>
+        <strong id="percent">0%</strong>
+      </div>
+
+      <div class="progress-track">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+
+      <div class="loading-meta">
+        <div>
+          <span>Tempo estimado</span>
+          <strong id="timeRemaining">01:20</strong>
+        </div>
+        <div>
+          <span>Nó de demonstração</span>
+          <strong>MRR-BR-02</strong>
+        </div>
+        <div>
+          <span>Canal</span>
+          <strong class="status-ok">Protegido</strong>
+        </div>
+      </div>
+
+      <div class="terminal-panel">
+        <div class="terminal-top">
+          <span><i data-lucide="terminal"></i> Registro da sessão</span>
+          <span id="terminalStatus" class="terminal-status">Em execução</span>
+        </div>
+        <div id="terminal" class="terminal"></div>
+      </div>
+
+      <div class="loading-note">
+        <i data-lucide="circle-help"></i>
+        Esta é uma demonstração visual. Nenhuma consulta é feita aos servidores da Roblox.
+      </div>
+    </section>
+
+    <section id="resultScreen" class="screen hidden">
+      <div class="result-glow" aria-hidden="true"></div>
+
+      <div class="result-icon">
+        <i data-lucide="circle-check-big"></i>
+      </div>
+
+      <p class="eyebrow centered">SIMULAÇÃO CONCLUÍDA</p>
+      <h2 class="result-title">Chave temporária criada</h2>
+      <p class="result-subtitle">O código abaixo foi gerado localmente para fins de demonstração.</p>
+
+      <div class="account-summary">
+        <div>
+          <span>Usuário</span>
+          <strong id="resultUsername">—</strong>
+        </div>
+        <div>
+          <span>Apelido</span>
+          <strong id="resultDisplayName">—</strong>
+        </div>
+        <div>
+          <span>Saldo informado</span>
+          <strong id="resultRobux">—</strong>
+        </div>
+      </div>
+
+      <label class="field-label" for="recoveryKey">Chave Temporária de Recuperação</label>
+      <div class="key-shell">
+        <i data-lucide="key-round"></i>
+        <code id="recoveryKey">—</code>
+      </div>
+
+      <p class="key-warning">
+        Esta chave é fictícia e não funciona como senha, token ou acesso a qualquer conta.
+      </p>
+
+      <button id="copyBtn" class="button primary full" type="button">
+        <i data-lucide="copy"></i>
+        <span>Copiar chave</span>
+      </button>
+
+      <div class="result-actions">
+        <button id="restartBtn" class="button secondary" type="button">
+          <i data-lucide="rotate-ccw"></i>
+          Nova simulação
+        </button>
+
+        <a
+          class="button official"
+          href="https://www.roblox.com/login/forgot-password-or-username"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i data-lucide="external-link"></i>
+          Recuperação oficial
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <span>Mirrors Team</span>
+      <span class="footer-dot"></span>
+      <span>Interface de demonstração</span>
+    </footer>
+  </main>
+
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
