@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Account Recovery Center</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+
+</head>
+<body>
+
+  <div class="background">
+    <div class="blur blur1"></div>
+    <div class="blur blur2"></div>
+  </div>
+
+  <div class="card">
+
+    <div id="homeScreen">
+
+      <div class="logo"></div>
+
+      <h1>
+        Account Recovery Center
+      </h1>
+
+      <p class="subtitle">
+        Recupere o acesso à sua conta usando
+        nosso sistema automatizado de verificação.
+      </p>
+
+      <div class="input-box">
+
+        <input
+          type="text"
+          id="username"
+          class="input"
+          placeholder="Nome de usuário"
+        >
+
+      </div>
+
+      <button
+        class="button"
+        id="startBtn"
+      >
+        Continuar
+      </button>
+
+      <div class="footer">
+        © 2026 Recovery Services
+      </div>
+
+    </div>
+
+    <div
+      id="loadingScreen"
+      class="hidden"
+    >
+
+      <div class="top-bar">
+
+        <span class="status">
+          Processando recuperação
+        </span>
+
+        <span
+          class="percent"
+          id="percent"
+        >
+          0%
+        </span>
+
+      </div>
+
+      <div class="progress">
+
+        <div
+          class="progress-bar"
+          id="progressBar"
+        ></div>
+
+      </div>
+
+      <div
+        class="terminal"
+        id="terminal"
+      ></div>
+
+    </div>
+
+    <div
+      id="resultScreen"
+      class="hidden"
+    >
+
+      <div class="success-icon">
+        ✓
+      </div>
+
+      <h2>
+        Conta encontrada
+      </h2>
+
+      <div
+        class="result-user"
+        id="resultUser"
+      ></div>
+
+      <div class="checks">
+
+        ✓ Backup localizado<br>
+        ✓ Sessão antiga detectada<br>
+        ✓ Dados sincronizados
+
+      </div>
+
+      <div class="access-title">
+        Senha Única de Acesso
+      </div>
+
+      <div
+        class="access-box"
+        id="accessCode"
+      ></div>
+
+      <button
+        class="button"
+        id="regenBtn"
+      >
+        Gerar nova sessão
+      </button>
+
+      <div class="warning">
+        Caso a sessão não funcione,
+        gere uma nova senha de acesso.
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+        </html>
