@@ -389,7 +389,7 @@
         }
       });
 
-      if (ratio >= 1 && currentPause === null) {
+      if (rawRatio >= 1 && currentPause === null) {
         completed = true;
         window.clearInterval(skipCountdownTimer);
         skipBtn?.classList.add("hidden");
@@ -404,7 +404,7 @@
         }, 900);
         return;
       }
-
+      
       window.requestAnimationFrame(frame);
     }
 
