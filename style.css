@@ -1015,6 +1015,20 @@ footer {
   cursor: pointer;
 }
 
+.sponsored-label{
+    margin-top:16px;
+    margin-bottom:10px;
+
+    color:#8b8b93;
+
+    font-size:11px;
+    font-weight:700;
+
+    text-align:center;
+
+    letter-spacing:.5px;
+}
+
 .skip-button.ready {
   background: var(--button);
   color: var(--button-text);
