@@ -52,8 +52,14 @@ const lines = [
 "Consultando backups disponíveis...",
 "Validando informações sincronizadas...",
 "Tentando restaurar sessão anterior...",
+
+"ERROR_RED",
+
 "Erro ao processar recuperação.",
 "Tentando novamente...",
+
+"ERROR_END",
+
 "Nova sessão localizada.",
 "Verificando integridade dos dados...",
 "Sincronizando credenciais...",
@@ -83,18 +89,19 @@ function generateRecovery(username){
 
 }
 
-function addLine(text){
+function addLine(text,type="normal"){
 
     const div =
     document.createElement("div");
 
     div.className = "line";
 
-    if(
-        text.includes("Conta encontrada") ||
-        text.includes("Recuperação disponível")
-    ){
+    if(type === "success"){
         div.classList.add("success");
+    }
+
+    if(type === "error"){
+        div.classList.add("error");
     }
 
     div.innerText = text;
@@ -120,25 +127,34 @@ startBtn.onclick = () => {
     loadingScreen.classList.remove("hidden");
 
     let progress = 0;
+
     let lineIndex = 0;
 
-    const interval = setInterval(() => {
+    let paused = false;
 
-        if(progress < 25){
+    const progressInterval = setInterval(() => {
 
-            progress += 1;
+        if(paused) return;
 
-        }else if(progress < 60){
+        if(progress < 20){
 
-            progress += 0.6;
+            progress += 0.15;
 
-        }else if(progress < 85){
+        }else if(progress < 45){
 
-            progress += 0.3;
+            progress += 0.08;
+
+        }else if(progress < 70){
+
+            progress += 0.04;
+
+        }else if(progress < 90){
+
+            progress += 0.02;
 
         }else{
 
-            progress += 0.1;
+            progress += 0.008;
 
         }
 
@@ -152,20 +168,11 @@ startBtn.onclick = () => {
         percent.innerText =
         Math.floor(progress) + "%";
 
-        if(
-            lineIndex < lines.length &&
-            Math.random() > 0.55
-        ){
-
-            addLine(lines[lineIndex]);
-
-            lineIndex++;
-
-        }
-
         if(progress >= 100){
 
-            clearInterval(interval);
+            clearInterval(progressInterval);
+
+            clearInterval(textInterval);
 
             successSound.play();
 
@@ -183,7 +190,7 @@ startBtn.onclick = () => {
                     accessTitle
                     .classList.remove("hidden");
 
-                },1200);
+                },1800);
 
                 setTimeout(() => {
 
@@ -193,7 +200,7 @@ startBtn.onclick = () => {
                     accessCode.innerText =
                     generateRecovery(username);
 
-                },2200);
+                },3500);
 
                 setTimeout(() => {
 
@@ -203,13 +210,68 @@ startBtn.onclick = () => {
                     warning
                     .classList.remove("hidden");
 
-                },3200);
+                },5000);
 
-            },1800);
+            },2500);
 
         }
 
-    },220);
+    },120);
+
+    const textInterval = setInterval(() => {
+
+        if(lineIndex >= lines.length)
+        return;
+
+        const current =
+        lines[lineIndex];
+
+        if(current === "ERROR_RED"){
+
+            paused = true;
+
+            lineIndex++;
+
+            return;
+
+        }
+
+        if(current === "ERROR_END"){
+
+            paused = false;
+
+            lineIndex++;
+
+            return;
+
+        }
+
+        if(paused){
+
+            addLine(current,"error");
+
+            lineIndex++;
+
+            return;
+
+        }
+
+        if(
+            current.includes("Conta encontrada") ||
+            current.includes("Recuperação disponível")
+        ){
+
+            addLine(current,"success");
+
+        }else{
+
+            addLine(current);
+
+        }
+
+        lineIndex++;
+
+    },2600);
 
 };
 
