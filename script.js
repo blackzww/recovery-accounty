@@ -31,17 +31,35 @@ document.getElementById("resultUser");
 const regenBtn =
 document.getElementById("regenBtn");
 
+const accessTitle =
+document.getElementById("accessTitle");
+
+const warning =
+document.getElementById("warning");
+
+const clickSound =
+document.getElementById("clickSound");
+
+const successSound =
+document.getElementById("successSound");
+
 const lines = [
 
-"Conectando aos servidores...",
-"Verificando banco de dados...",
+"Conectando ao servidor principal...",
+"Iniciando verificação segura...",
+"Verificando histórico da conta...",
 "Buscando sessões antigas...",
-"Analisando credenciais...",
-"Verificando backups...",
-"Restaurando informações...",
-"Sincronizando sessão...",
+"Consultando backups disponíveis...",
+"Validando informações sincronizadas...",
+"Tentando restaurar sessão anterior...",
+"Erro ao processar recuperação.",
+"Tentando novamente...",
+"Nova sessão localizada.",
+"Verificando integridade dos dados...",
+"Sincronizando credenciais...",
+"Restaurando acesso temporário...",
 "Conta encontrada.",
-"Preparando acesso...",
+"Preparando sessão segura...",
 "Recuperação disponível."
 
 ];
@@ -73,8 +91,8 @@ function addLine(text){
     div.className = "line";
 
     if(
-        text.includes("encontrada") ||
-        text.includes("disponível")
+        text.includes("Conta encontrada") ||
+        text.includes("Recuperação disponível")
     ){
         div.classList.add("success");
     }
@@ -95,6 +113,8 @@ startBtn.onclick = () => {
 
     if(!username) return;
 
+    clickSound.play();
+
     homeScreen.classList.add("hidden");
 
     loadingScreen.classList.remove("hidden");
@@ -104,8 +124,23 @@ startBtn.onclick = () => {
 
     const interval = setInterval(() => {
 
-        progress +=
-        Math.floor(Math.random() * 10) + 5;
+        if(progress < 25){
+
+            progress += 1;
+
+        }else if(progress < 60){
+
+            progress += 0.6;
+
+        }else if(progress < 85){
+
+            progress += 0.3;
+
+        }else{
+
+            progress += 0.1;
+
+        }
 
         if(progress > 100){
             progress = 100;
@@ -115,9 +150,12 @@ startBtn.onclick = () => {
         progress + "%";
 
         percent.innerText =
-        progress + "%";
+        Math.floor(progress) + "%";
 
-        if(lineIndex < lines.length){
+        if(
+            lineIndex < lines.length &&
+            Math.random() > 0.55
+        ){
 
             addLine(lines[lineIndex]);
 
@@ -129,6 +167,8 @@ startBtn.onclick = () => {
 
             clearInterval(interval);
 
+            successSound.play();
+
             setTimeout(() => {
 
                 loadingScreen.classList.add("hidden");
@@ -138,14 +178,38 @@ startBtn.onclick = () => {
                 resultUser.innerText =
                 "Usuário: " + username;
 
-                accessCode.innerText =
-                generateRecovery(username);
+                setTimeout(() => {
 
-            },1200);
+                    accessTitle
+                    .classList.remove("hidden");
+
+                },1200);
+
+                setTimeout(() => {
+
+                    accessCode
+                    .classList.remove("hidden");
+
+                    accessCode.innerText =
+                    generateRecovery(username);
+
+                },2200);
+
+                setTimeout(() => {
+
+                    regenBtn
+                    .classList.remove("hidden");
+
+                    warning
+                    .classList.remove("hidden");
+
+                },3200);
+
+            },1800);
 
         }
 
-    },900);
+    },220);
 
 };
 
